@@ -1,17 +1,18 @@
 use std::env;
-use std::fs;
+use std::process;
+
+use mvpgrep::Config;
+use mvpgrep::run;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    let query = &args[1];
-    let file_path = &args[2];
+    let config = Config::build(&args).unwrap_or_else(|err|{
+        process::exit(1);
+    });
 
-    println!("Searching for {}",query);
-    println!("In file {}",file_path);
-
-    let contents = fs::read_to_string(file_path)
-        .expect("Unable to read the file");
-    
-    println!("With text:\n{contents}");
+    if let Err(e) = run(config) {
+        process::exit(1);
+    }
 }
+

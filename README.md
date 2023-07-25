@@ -1,6 +1,6 @@
-###A simple prototype of command line search tool in Rust.
+### A simple prototype of command line search tool in Rust.
 
-#How to run ->
+# How to run ->
 
 It accepts 2 arguments and an environmant variable "IGNORE_CASE"
 
